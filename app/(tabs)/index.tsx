@@ -1,5 +1,5 @@
 import { Image, StyleSheet, Platform, ScrollView } from 'react-native';
-
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { HelloWave } from '@/components/HelloWave';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
@@ -20,15 +20,17 @@ export default function HomeScreen() {
     //     <HelloWave />
     //   </ThemedView>
     // </ParallaxScrollView>
-    <ScrollView style={styles.scrollStyle}>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">this is a subtitle!</ThemedText>
-      </ThemedView>
-    </ScrollView>
+    <SafeAreaView>
+      <ScrollView style={styles.scrollStyle}>
+        <ThemedView style={styles.titleContainer}>
+          <ThemedText type="title">Welcome!</ThemedText>
+          <HelloWave />
+        </ThemedView>
+        <ThemedView style={styles.stepContainer}>
+          <ThemedText type="subtitle">this is a subtitle!</ThemedText>
+        </ThemedView>
+      </ScrollView>
+    </SafeAreaView>
   );
 }
 
@@ -50,7 +52,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
   },
   scrollStyle: {
-    marginTop: 33,
-    padding: 10
+    paddingHorizontal: 10,
+    paddingVertical: 15 
   }
 });
