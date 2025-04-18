@@ -1,36 +1,41 @@
-import { Image, StyleSheet, Platform, ScrollView } from 'react-native';
+import { StyleSheet, ScrollView, FlatList } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
+import openCourts from '@/data/openCourts.json';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+
+const DATA = openCourts;
 
 export default function HomeScreen() {
   return (
-    // <ParallaxScrollView
-    //   headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-    //   headerImage={
-    //     <Image
-    //       source={require('@/assets/images/partial-react-logo.png')}
-    //       style={styles.reactLogo}
-    //     />
-    //   }>
-    //   <ThemedView style={styles.titleContainer}>
-    //     <ThemedText type="title">Welcome!</ThemedText>
-    //     <HelloWave />
-    //   </ThemedView>
-    // </ParallaxScrollView>
-    <SafeAreaView>
-      <ScrollView style={styles.scrollStyle}>
-        <ThemedView style={styles.titleContainer}>
-          <ThemedText type="title">Welcome!</ThemedText>
-          <HelloWave />
-        </ThemedView>
-        <ThemedView style={styles.stepContainer}>
-          <ThemedText type="subtitle">this is a subtitle!</ThemedText>
-        </ThemedView>
-      </ScrollView>
-    </SafeAreaView>
+    <SafeAreaProvider>
+      <SafeAreaView>
+        <ScrollView style={styles.scrollStyle}>
+          <ThemedView style={styles.titleContainer}>
+            <ThemedText type="title">Pickup Court Finder</ThemedText>
+          </ThemedView>
+          <ThemedView style={styles.stepContainer}>
+            <ThemedText type="subtitle">Open Volleyball courts near you!</ThemedText>
+          </ThemedView>  
+        </ScrollView>
+
+        <FlatList
+          style={styles.flatlistStyle}
+          data={DATA['Open Courts']} 
+          renderItem={({item}) =>
+            <ThemedView style={styles.listContainer}>
+              <ThemedText type="subtitle">{item.Name}</ThemedText>
+              <ThemedView style={styles.listItemStyle}>
+                <ThemedText type="default">Location: {item.Location}</ThemedText>
+                <ThemedText type="default">Courts: {item.Courts}</ThemedText>
+                <ThemedText type="default">Price: ${item.Price}</ThemedText>
+              </ThemedView>
+            </ThemedView>  
+          }
+        />
+      </SafeAreaView>
+    </SafeAreaProvider>
   );
 }
 
@@ -39,20 +44,29 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: 8,
+    padding: 10
   },
   stepContainer: {
     gap: 8,
     marginBottom: 8,
-  },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+    padding: 10
   },
   scrollStyle: {
     paddingHorizontal: 10,
     paddingVertical: 15 
+  },
+  listItemStyle: {
+    flexDirection: 'row',
+    gap: 20,
+    backgroundColor: '#5c5c5c',
+  },
+  listContainer: {
+    flexDirection: 'column',
+    padding: 20,
+    backgroundColor: '#5c5c5c',
+    margin: 10,
+  },
+  flatlistStyle: {
+    height: '80%'
   }
 });

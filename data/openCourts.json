@@ -1,0 +1,8 @@
+{"Open Courts":[
+    {"Name":"South Bellevue Community Center", "Location":"Bellevue", "Courts":2, "Price":5},
+    {"Name":"Redmond Commuinty & Senior Center", "Location":"Redmond", "Courts":1, "Price":8},
+    {"Name":"Crossroads Community Center", "Location":"Bellevue", "Courts":2 ,"Price":5},
+    {"Name":"Hidden Valley Field House", "Location":"Bellevue", "Courts":2 ,"Price":4},
+    {"Name":"Mercer Island Community & Event Center", "Location":"Mercer Island", "Courts":1 ,"Price":7},
+    {"Name":"Issaquah Community Center", "Location":"Issaquah", "Courts":1 ,"Price":6}
+]}
