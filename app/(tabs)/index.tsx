@@ -1,4 +1,4 @@
-import { StyleSheet, ScrollView, FlatList } from 'react-native';
+import { StyleSheet, ScrollView, FlatList, TextInput, Button } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
@@ -11,14 +11,33 @@ export default function HomeScreen() {
   return (
     <SafeAreaProvider>
       <SafeAreaView>
+        
+        {/* Scrollview */}
+
         <ScrollView style={styles.scrollStyle}>
           <ThemedView style={styles.titleContainer}>
             <ThemedText type="title">Pickup Court Finder</ThemedText>
           </ThemedView>
           <ThemedView style={styles.stepContainer}>
             <ThemedText type="subtitle">Open Volleyball courts near you!</ThemedText>
-          </ThemedView>  
+          </ThemedView> 
+
+          {/* Text Input */}
+
+          <TextInput 
+            style={styles.textInputStyle}
+            placeholder={'Search'}
+          /> 
+
+          {/* Button */}
+
+          <Button
+            title='Search'
+          />
+
         </ScrollView>
+
+        {/* FlatList */}
 
         <FlatList
           style={styles.flatlistStyle}
@@ -53,7 +72,8 @@ const styles = StyleSheet.create({
   },
   scrollStyle: {
     paddingHorizontal: 10,
-    paddingVertical: 15 
+    paddingVertical: 0,
+    height: '30%'
   },
   listItemStyle: {
     flexDirection: 'row',
@@ -67,6 +87,12 @@ const styles = StyleSheet.create({
     margin: 10,
   },
   flatlistStyle: {
-    height: '80%'
+    height: '70%'
+  }, 
+  textInputStyle: {
+    borderStyle: 'solid',
+    borderWidth: 1,
+    borderColor: '#505050',
+    backgroundColor: '#ffffff',
   }
 });
