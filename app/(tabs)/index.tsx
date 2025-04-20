@@ -43,9 +43,9 @@ export default function HomeScreen() {
           style={styles.flatlistStyle}
           data={DATA['Open Courts']} 
           renderItem={({item}) =>
-            <ThemedView style={styles.listContainer}>
+            <ThemedView style={styles.listContainer} lightColor='#bdbdbd' darkColor='#5c5c5c'>
               <ThemedText type="subtitle">{item.Name}</ThemedText>
-              <ThemedView style={styles.listItemStyle}>
+              <ThemedView style={styles.listItemStyle} lightColor='#bdbdbd' darkColor='#5c5c5c'>
                 <ThemedText type="default">Location: {item.Location}</ThemedText>
                 <ThemedText type="default">Courts: {item.Courts}</ThemedText>
                 <ThemedText type="default">Price: ${item.Price}</ThemedText>
@@ -58,12 +58,15 @@ export default function HomeScreen() {
   );
 }
 
+
+
 const styles = StyleSheet.create({
   titleContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: 8,
-    padding: 10
+    padding: 10,
+    paddingTop: 30
   },
   stepContainer: {
     gap: 8,
@@ -78,12 +81,11 @@ const styles = StyleSheet.create({
   listItemStyle: {
     flexDirection: 'row',
     gap: 20,
-    backgroundColor: '#5c5c5c',
+    
   },
   listContainer: {
     flexDirection: 'column',
     padding: 20,
-    backgroundColor: '#5c5c5c',
     margin: 10,
   },
   flatlistStyle: {
