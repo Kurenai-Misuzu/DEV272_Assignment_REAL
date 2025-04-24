@@ -5,6 +5,8 @@ import { ThemedView } from '@/components/ThemedView';
 import openCourts from '@/data/openCourts.json';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
+import Card from '@/components/Card';
+
 const DATA = openCourts;
 
 export default function HomeScreen() {
@@ -43,14 +45,8 @@ export default function HomeScreen() {
           style={styles.flatlistStyle}
           data={DATA['Open Courts']} 
           renderItem={({item}) =>
-            <ThemedView style={styles.listContainer} lightColor='#bdbdbd' darkColor='#5c5c5c'>
-              <ThemedText type="subtitle">{item.Name}</ThemedText>
-              <ThemedView style={styles.listItemStyle} lightColor='#bdbdbd' darkColor='#5c5c5c'>
-                <ThemedText type="default">Location: {item.Location}</ThemedText>
-                <ThemedText type="default">Courts: {item.Courts}</ThemedText>
-                <ThemedText type="default">Price: ${item.Price}</ThemedText>
-              </ThemedView>
-            </ThemedView>  
+            <Card name={item.Name} location={item.Location} courts={item.Courts} price={item.Price}/>
+            
           }
         />
       </SafeAreaView>
@@ -77,16 +73,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     paddingVertical: 0,
     height: '30%'
-  },
-  listItemStyle: {
-    flexDirection: 'row',
-    gap: 20,
-    
-  },
-  listContainer: {
-    flexDirection: 'column',
-    padding: 20,
-    margin: 10,
   },
   flatlistStyle: {
     height: '70%'
