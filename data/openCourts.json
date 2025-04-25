@@ -1,8 +1,44 @@
 {"Open Courts":[
-    {"Name":"South Bellevue Community Center", "Location":"Bellevue", "Courts":2, "Price":5},
-    {"Name":"Redmond Commuinty & Senior Center", "Location":"Redmond", "Courts":1, "Price":8},
-    {"Name":"Crossroads Community Center", "Location":"Bellevue", "Courts":2 ,"Price":5},
-    {"Name":"Hidden Valley Field House", "Location":"Bellevue", "Courts":2 ,"Price":4},
-    {"Name":"Mercer Island Community & Event Center", "Location":"Mercer Island", "Courts":1 ,"Price":7},
-    {"Name":"Issaquah Community Center", "Location":"Issaquah", "Courts":1 ,"Price":6}
+    {
+        "Name":"South Bellevue Community Center", 
+        "Location":"Bellevue", 
+        "Courts":2,
+        "Price":5,
+        "Description":"A community center with a gym, Basketball courts, climbing wall, and much more! Made in Partnership with the Boys & Girls Clubs of Bellevue."
+    },
+    {
+        "Name":"Redmond Commuinty & Senior Center", 
+        "Location":"Redmond", 
+        "Courts":1, 
+        "Price":8,
+        "Description":"A 52K square foot space that was designed for everyone. Contains several courts and is a great place for socialization!"
+    },
+    {
+        "Name":"Crossroads Community Center", 
+        "Location":"Bellevue", 
+        "Courts":2, 
+        "Price":5,
+        "Description":"An international welcoming place for all to build valuable relationshiops. Lots of programs such as arts, theater, and wellness."
+    },
+    {
+        "Name":"Hidden Valley Field House", 
+        "Location":"Bellevue", 
+        "Courts":2, 
+        "Price":4,
+        "Description":"Offers recreational facilities for younth and their families on the Eastside."
+    },
+    {
+        "Name":"Mercer Island Community & Event Center", 
+        "Location":"Mercer Island", 
+        "Courts":1, 
+        "Price":7,
+        "Description":"Community center with many meeting rooms, and event spaces, a gym, and even a basketball court!"
+    },
+    {
+        "Name":"Issaquah Community Center", 
+        "Location":"Issaquah", 
+        "Courts":1, 
+        "Price":6,
+        "Description":"The Community Center is a gathering place for people of all ages with active lifestyles."
+    }
 ]}

@@ -2,7 +2,7 @@ import React from "react";
 import { ThemedText } from "./ThemedText";
 import { ThemedView } from "./ThemedView";
 
-import { StyleSheet } from "react-native";
+import { StyleSheet, Pressable} from "react-native";
 
 export type CardProps = {
     name: string;
@@ -11,6 +11,11 @@ export type CardProps = {
     price: number;
 };
 
+const onPressHandler = () => {
+    // temporary will probably be used for navigation
+    console.log('button pressed');
+}
+
 export default function Card({
     name,
     location,
@@ -18,14 +23,16 @@ export default function Card({
     price
 }: CardProps) {
     return (
-        <ThemedView style={styles.listContainer} lightColor='#bdbdbd' darkColor='#5c5c5c'>
-            <ThemedText type="subtitle">{name}</ThemedText>
-            <ThemedView style={styles.listItemStyle} lightColor='#bdbdbd' darkColor='#5c5c5c'>
-            <ThemedText type="default">Location: {location}</ThemedText>
-            <ThemedText type="default">Courts: {courts}</ThemedText>
-            <ThemedText type="default">Price: ${price}</ThemedText>
-            </ThemedView>
-        </ThemedView> 
+        <Pressable onPress={onPressHandler}>
+            <ThemedView style={styles.listContainer} lightColor='#bdbdbd' darkColor='#5c5c5c'>
+                <ThemedText type="subtitle">{name}</ThemedText>
+                <ThemedView style={styles.listItemStyle} lightColor='#bdbdbd' darkColor='#5c5c5c'>
+                <ThemedText type="default">Location: {location}</ThemedText>
+                <ThemedText type="default">Courts: {courts}</ThemedText>
+                <ThemedText type="default">Price: ${price}</ThemedText>
+                </ThemedView>
+            </ThemedView> 
+        </Pressable>
     )
 }
 

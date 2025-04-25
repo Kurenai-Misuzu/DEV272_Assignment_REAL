@@ -2,10 +2,10 @@ import { StyleSheet, ScrollView, FlatList, TextInput, Button } from 'react-nativ
 import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
-import openCourts from '@/data/openCourts.json';
 import { useState } from 'react';
 
 import Card from '@/components/Card';
+import openCourts from '@/data/openCourts.json';
 
 const DATA = openCourts;
 
