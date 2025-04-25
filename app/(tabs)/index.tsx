@@ -1,15 +1,33 @@
 import { StyleSheet, ScrollView, FlatList, TextInput, Button } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import openCourts from '@/data/openCourts.json';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { useState } from 'react';
 
 import Card from '@/components/Card';
 
 const DATA = openCourts;
 
 export default function HomeScreen() {
+
+  const [searchQuery, setSearchQuery] = useState('');
+  const [filteredData, setFilteredData] = useState(DATA['Open Courts']);
+
+  // Changes the data when the Search button is pressed
+  const handleSearch = () => {
+    
+    const filtered = DATA['Open Courts'].filter((item) =>
+      item.Name.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+    setFilteredData(filtered);
+  };
+
+  // Changes the searchQuery when the text box is changed
+  const changeSearch = (query: string) => {
+    setSearchQuery(query);
+  }
+
   return (
     <SafeAreaProvider>
       <SafeAreaView>
@@ -29,12 +47,15 @@ export default function HomeScreen() {
           <TextInput 
             style={styles.textInputStyle}
             placeholder={'Search'}
+            value={searchQuery}
+            onChangeText={changeSearch}
           /> 
 
           {/* Button */}
 
           <Button
             title='Search'
+            onPress={handleSearch}
           />
 
         </ScrollView>
@@ -43,7 +64,7 @@ export default function HomeScreen() {
 
         <FlatList
           style={styles.flatlistStyle}
-          data={DATA['Open Courts']} 
+          data={filteredData} 
           renderItem={({item}) =>
             <Card name={item.Name} location={item.Location} courts={item.Courts} price={item.Price}/>
             
