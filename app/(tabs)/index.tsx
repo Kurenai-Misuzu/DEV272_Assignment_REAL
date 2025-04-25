@@ -4,9 +4,12 @@ import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import { useState } from 'react';
 
+// my components
 import Card from '@/components/Card';
 import openCourts from '@/data/openCourts.json';
+import { Venue, VenueContext } from '@/context/VenueContext';
 
+// data
 const DATA = openCourts;
 
 export default function HomeScreen() {
@@ -66,7 +69,9 @@ export default function HomeScreen() {
           style={styles.flatlistStyle}
           data={filteredData} 
           renderItem={({item}) =>
-            <Card name={item.Name} location={item.Location} courts={item.Courts} price={item.Price}/>
+            
+            
+            <Card id={item.ID} name={item.Name} location={item.Location} courts={item.Courts} price={item.Price} desc={item.Description}/>
             
           }
         />
