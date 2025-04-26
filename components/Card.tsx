@@ -4,52 +4,28 @@ import { ThemedView } from "./ThemedView";
 import { StyleSheet,} from "react-native";
 
 
-import { Venue, VenueContext } from "@/context/VenueContext";
+import { VenueContext } from "@/context/VenueContext";
 import { Link } from "expo-router";
 import { Button } from "react-native";
+import { useContext } from "react";
 
-export type CardProps = {
-    id: number;
-    name: string;
-    location: string;
-    courts: number;
-    price: number;
-    desc: string;
-};
 
-export default function Card({
-    id,
-    name,
-    location,
-    courts,
-    price,
-    desc
-}: CardProps) {
 
-    const [venue, setVenue] = useState<Venue>({
-        venueID: id,
-        venueName: name,
-        venueLocation: location,
-        venueCourts: courts,
-        venuePrice: price,
-        venueDescription: desc
-    })
-
+export default function Card() {
+    const venue = useContext(VenueContext);
     return (
         <ThemedView style={styles.listContainer} lightColor='#bdbdbd' darkColor='#5c5c5c'>
-            <ThemedText type="subtitle">{name}</ThemedText>
+            <ThemedText type="subtitle">{venue.venueName}</ThemedText>
             <ThemedView style={styles.listItemStyle} lightColor='#bdbdbd' darkColor='#5c5c5c'>
-                <ThemedText type="default">Location: {location}</ThemedText>
-                <ThemedText type="default">Courts: {courts}</ThemedText>
-                <ThemedText type="default">Price: ${price}</ThemedText>
+                <ThemedText type="default">Location: {venue.venueLocation}</ThemedText>
+                <ThemedText type="default">Courts: {venue.venueCourts}</ThemedText>
+                <ThemedText type="default">Price: ${venue.venuePrice}</ThemedText>
             </ThemedView>
 
             {/*details button */}
-            <VenueContext.Provider value={venue}>
-                <Link href={{ pathname:'/details/[id]', params: { id: venue.venueID }}} push asChild>
-                    <Button title='See Details' onPress={() => setVenue(venue)}/> 
-                </Link>
-            </VenueContext.Provider>
+            <Link href={{ pathname:'/details/[id]', params: { id: venue.venueID }}} push asChild>
+                <Button title='See Details'/> 
+            </Link>
 
         </ThemedView> 
     )

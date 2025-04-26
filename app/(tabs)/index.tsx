@@ -31,6 +31,33 @@ export default function HomeScreen() {
     setSearchQuery(query);
   }
 
+  // context
+  const [venue, setVenue] = useState<Venue>({
+    venueID: 0,
+    venueName: '',
+    venueLocation: '',
+    venueCourts: 0,
+    venuePrice: 0,
+    venueDescription: ''
+  })
+
+  // this is extremely dirty plese let me know if there is a better way to do this
+  const setVenueAndRender = (item:any) => {
+    setVenue(venue)
+    venue.venueID = item.ID
+    venue.venueName = item.Name
+    venue.venueLocation = item.Location
+    venue.venueCourts = item.Courts
+    venue.venuePrice = item.Price
+    venue.venueDescription = item.Description
+    console.log(venue);
+    return(
+      <VenueContext.Provider value={venue}>
+        <Card />
+      </VenueContext.Provider>
+    )
+  }
+
   return (
     <SafeAreaProvider>
       <SafeAreaView>
@@ -64,17 +91,12 @@ export default function HomeScreen() {
         </ScrollView>
 
         {/* FlatList */}
-
         <FlatList
           style={styles.flatlistStyle}
           data={filteredData} 
-          renderItem={({item}) =>
-            
-            
-            <Card id={item.ID} name={item.Name} location={item.Location} courts={item.Courts} price={item.Price} desc={item.Description}/>
-            
-          }
+          renderItem={({item}) => setVenueAndRender(item)}
         />
+
       </SafeAreaView>
     </SafeAreaProvider>
   );
