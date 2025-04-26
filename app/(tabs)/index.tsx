@@ -32,7 +32,7 @@ export default function HomeScreen() {
   }
 
   // context
-  const [venue, setVenue] = useState<Venue>({
+  const [venue] = useState<Venue>({
     venueID: 0,
     venueName: '',
     venueLocation: '',
@@ -43,14 +43,13 @@ export default function HomeScreen() {
 
   // this is extremely dirty plese let me know if there is a better way to do this
   const setVenueAndRender = (item:any) => {
-    setVenue(venue)
     venue.venueID = item.ID
     venue.venueName = item.Name
     venue.venueLocation = item.Location
     venue.venueCourts = item.Courts
     venue.venuePrice = item.Price
     venue.venueDescription = item.Description
-    console.log(venue);
+    
     return(
       <VenueContext.Provider value={venue}>
         <Card />
