@@ -2,6 +2,7 @@ import { StyleSheet, ScrollView, FlatList, TextInput, Button } from 'react-nativ
 import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
+import { Stack } from 'expo-router';
 import { useState } from 'react';
 
 // my components
@@ -60,7 +61,7 @@ export default function HomeScreen() {
   return (
     <SafeAreaProvider>
       <SafeAreaView>
-        
+        <Stack.Screen options={{ title: 'Home'}} />
         {/* Scrollview */}
 
         <ScrollView style={styles.scrollStyle}>

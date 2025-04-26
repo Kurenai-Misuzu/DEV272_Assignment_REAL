@@ -23,7 +23,15 @@ export default function Card() {
             </ThemedView>
 
             {/*details button */}
-            <Link href={{ pathname:'/details/[id]', params: { id: venue.venueID }}} push asChild>
+            <Link href={{ pathname:'/details/[id]', params: { 
+                id: venue.venueID, 
+                name: venue.venueName,
+                price: venue.venuePrice,
+                courts: venue.venueCourts,
+                description: venue.venueDescription,
+                location: venue.venueLocation,
+                
+                }}} push asChild>
                 <Button title='See Details'/> 
             </Link>
 
