@@ -1,38 +1,41 @@
-import React from "react";
+import React, { useState } from "react";
 import { ThemedText } from "./ThemedText";
 import { ThemedView } from "./ThemedView";
+import { StyleSheet,} from "react-native";
 
-import { StyleSheet, Pressable} from "react-native";
 
-export type CardProps = {
-    name: string;
-    location: string;
-    courts: number;
-    price: number;
-};
+import { VenueContext } from "@/context/VenueContext";
+import { Link } from "expo-router";
+import { Button } from "react-native";
+import { useContext } from "react";
 
-const onPressHandler = () => {
-    // temporary will probably be used for navigation
-    console.log('button pressed');
-}
 
-export default function Card({
-    name,
-    location,
-    courts,
-    price
-}: CardProps) {
+
+export default function Card() {
+    const venue = useContext(VenueContext);
     return (
-        <Pressable onPress={onPressHandler}>
-            <ThemedView style={styles.listContainer} lightColor='#bdbdbd' darkColor='#5c5c5c'>
-                <ThemedText type="subtitle">{name}</ThemedText>
-                <ThemedView style={styles.listItemStyle} lightColor='#bdbdbd' darkColor='#5c5c5c'>
-                <ThemedText type="default">Location: {location}</ThemedText>
-                <ThemedText type="default">Courts: {courts}</ThemedText>
-                <ThemedText type="default">Price: ${price}</ThemedText>
-                </ThemedView>
-            </ThemedView> 
-        </Pressable>
+        <ThemedView style={styles.listContainer} lightColor='#bdbdbd' darkColor='#5c5c5c'>
+            <ThemedText type="subtitle">{venue.venueName}</ThemedText>
+            <ThemedView style={styles.listItemStyle} lightColor='#bdbdbd' darkColor='#5c5c5c'>
+                <ThemedText type="default">Location: {venue.venueLocation}</ThemedText>
+                <ThemedText type="default">Courts: {venue.venueCourts}</ThemedText>
+                <ThemedText type="default">Price: ${venue.venuePrice}</ThemedText>
+            </ThemedView>
+
+            {/*details button */}
+            <Link href={{ pathname:'/details/[id]', params: { 
+                id: venue.venueID, 
+                name: venue.venueName,
+                price: venue.venuePrice,
+                courts: venue.venueCourts,
+                description: venue.venueDescription,
+                location: venue.venueLocation,
+                
+                }}} push asChild>
+                <Button title='See Details'/> 
+            </Link>
+
+        </ThemedView> 
     )
 }
 

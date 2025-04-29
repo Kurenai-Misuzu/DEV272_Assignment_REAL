@@ -2,11 +2,15 @@ import { StyleSheet, ScrollView, FlatList, TextInput, Button } from 'react-nativ
 import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
+import { Stack } from 'expo-router';
 import { useState } from 'react';
 
+// my components
 import Card from '@/components/Card';
 import openCourts from '@/data/openCourts.json';
+import { Venue, VenueContext } from '@/context/VenueContext';
 
+// data
 const DATA = openCourts;
 
 export default function HomeScreen() {
@@ -28,10 +32,36 @@ export default function HomeScreen() {
     setSearchQuery(query);
   }
 
+  // context
+  const [venue] = useState<Venue>({
+    venueID: 0,
+    venueName: '',
+    venueLocation: '',
+    venueCourts: 0,
+    venuePrice: 0,
+    venueDescription: ''
+  })
+
+  // this is extremely dirty plese let me know if there is a better way to do this
+  const setVenueAndRender = (item:any) => {
+    venue.venueID = item.ID
+    venue.venueName = item.Name
+    venue.venueLocation = item.Location
+    venue.venueCourts = item.Courts
+    venue.venuePrice = item.Price
+    venue.venueDescription = item.Description
+    
+    return(
+      <VenueContext.Provider value={venue}>
+        <Card />
+      </VenueContext.Provider>
+    )
+  }
+
   return (
     <SafeAreaProvider>
       <SafeAreaView>
-        
+        <Stack.Screen options={{ title: 'Home'}} />
         {/* Scrollview */}
 
         <ScrollView style={styles.scrollStyle}>
@@ -61,15 +91,12 @@ export default function HomeScreen() {
         </ScrollView>
 
         {/* FlatList */}
-
         <FlatList
           style={styles.flatlistStyle}
           data={filteredData} 
-          renderItem={({item}) =>
-            <Card name={item.Name} location={item.Location} courts={item.Courts} price={item.Price}/>
-            
-          }
+          renderItem={({item}) => setVenueAndRender(item)}
         />
+
       </SafeAreaView>
     </SafeAreaProvider>
   );
