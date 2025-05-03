@@ -1,26 +1,19 @@
 import { createContext, useContext, useState } from "react";
 import openCourts from '@/data/openCourts.json';
+import { Venue } from "./VenueContext";
 
 const data = openCourts['Open Courts'];
 
-// data types
-export type Venue = {
-    ID: number; 
-    Name: string; 
-    Location: string; 
-    Courts: number; 
-    Price: number; 
-    Description: string;
-}
 
-type VenueContextType = {
+// data types
+type VenueContextListType = {
     venueList: Venue[];
     addVenue: (venueToAdd: Venue) => void;
     updateVenue: (venueID: number, updatedVenue: Partial<Venue>) => void;
 }
 
 // create context
-const VenueListContext = createContext<VenueContextType | null>(null);
+const VenueListContext = createContext<VenueContextListType | null>(null);
 
 // PROVIDER
 export const VenueListContextProvider: React.FC<{children: React.ReactNode}> = ({children}) => {
@@ -49,7 +42,7 @@ export const VenueListContextProvider: React.FC<{children: React.ReactNode}> = (
 export const useVenueListContext = () => {
     const context = useContext(VenueListContext);
     if (!context) {
-        throw new Error('useVenueListContext must be used within it\'s appropriate provider');
+        throw new Error('useVenueListContext must be used within it\'s appropriate provider!');
     }
     return context;
 }

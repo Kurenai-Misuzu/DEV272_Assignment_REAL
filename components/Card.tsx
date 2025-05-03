@@ -4,32 +4,31 @@ import { ThemedView } from "./ThemedView";
 import { StyleSheet,} from "react-native";
 
 
-import { VenueContext } from "@/context/VenueContext";
+import { useVenueContext } from "@/context/VenueContext";
 import { Link } from "expo-router";
 import { Button } from "react-native";
-import { useContext } from "react";
 
 
 
 export default function Card() {
-    const venue = useContext(VenueContext);
+    const {venue} = useVenueContext(); 
     return (
         <ThemedView style={styles.listContainer} lightColor='#bdbdbd' darkColor='#5c5c5c'>
-            <ThemedText type="subtitle">{venue.venueName}</ThemedText>
+            <ThemedText type="subtitle">{venue.Name}</ThemedText>
             <ThemedView style={styles.listItemStyle} lightColor='#bdbdbd' darkColor='#5c5c5c'>
-                <ThemedText type="default">Location: {venue.venueLocation}</ThemedText>
-                <ThemedText type="default">Courts: {venue.venueCourts}</ThemedText>
-                <ThemedText type="default">Price: ${venue.venuePrice}</ThemedText>
+                <ThemedText type="default">Location: {venue.Location}</ThemedText>
+                <ThemedText type="default">Courts: {venue.Courts}</ThemedText>
+                <ThemedText type="default">Price: ${venue.Price}</ThemedText>
             </ThemedView>
 
             {/*details button */}
             <Link href={{ pathname:'/details/[id]', params: { 
-                id: venue.venueID, 
-                name: venue.venueName,
-                price: venue.venuePrice,
-                courts: venue.venueCourts,
-                description: venue.venueDescription,
-                location: venue.venueLocation,
+                id: venue.ID, 
+                name: venue.Name,
+                price: venue.Price,
+                courts: venue.Courts,
+                description: venue.Description,
+                location: venue.Location,
                 
                 }}} push asChild>
                 <Button title='See Details'/> 

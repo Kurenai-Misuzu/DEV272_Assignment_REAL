@@ -5,23 +5,24 @@ import { ThemedView } from '@/components/ThemedView';
 import { Stack } from 'expo-router';
 import { useState } from 'react';
 
+import { useVenueListContext } from '@/context/VenueListContext';
+import { useVenueContext, Venue } from '@/context/VenueContext';
+
 // my components
 import Card from '@/components/Card';
-import openCourts from '@/data/openCourts.json';
-import { Venue, VenueContext } from '@/context/VenueContext';
 
 // data
-const DATA = openCourts;
 
 export default function HomeScreen() {
+  const {venueList, addVenue, updateVenue} = useVenueListContext();
 
   const [searchQuery, setSearchQuery] = useState('');
-  const [filteredData, setFilteredData] = useState(DATA['Open Courts']);
+  const [filteredData, setFilteredData] = useState(venueList);
 
   // Changes the data when the Search button is pressed
   const handleSearch = () => {
     
-    const filtered = DATA['Open Courts'].filter((item) =>
+    const filtered = venueList.filter((item) =>
       item.Name.toLowerCase().includes(searchQuery.toLowerCase())
     );
     setFilteredData(filtered);
@@ -32,29 +33,30 @@ export default function HomeScreen() {
     setSearchQuery(query);
   }
 
-  // context
-  const [venue] = useState<Venue>({
-    venueID: 0,
-    venueName: '',
-    venueLocation: '',
-    venueCourts: 0,
-    venuePrice: 0,
-    venueDescription: ''
-  })
+  // // context
+  // const [venue] = useState<Venue>({
+  //   venueID: 0,
+  //   venueName: '',
+  //   venueLocation: '',
+  //   venueCourts: 0,
+  //   venuePrice: 0,
+  //   venueDescription: ''
+  // })
 
   // this is extremely dirty plese let me know if there is a better way to do this
-  const setVenueAndRender = (item:any) => {
-    venue.venueID = item.ID
-    venue.venueName = item.Name
-    venue.venueLocation = item.Location
-    venue.venueCourts = item.Courts
-    venue.venuePrice = item.Price
-    venue.venueDescription = item.Description
-    
-    return(
-      <VenueContext.Provider value={venue}>
-        <Card />
-      </VenueContext.Provider>
+  const setVenueAndRender = (item:Venue) => {
+    const {setVenue} = useVenueContext();
+    setVenue({
+      ID: item.ID, 
+      Name: item.Name,
+      Location: item.Location, 
+      Courts: item.Courts,
+      Price: item.Price,
+      Description: item.Description,
+    })
+
+    return (
+      <Card />
     )
   }
 
