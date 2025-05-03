@@ -33,28 +33,16 @@ export default function HomeScreen() {
     setSearchQuery(query);
   }
 
-  // // context
-  // const [venue] = useState<Venue>({
-  //   venueID: 0,
-  //   venueName: '',
-  //   venueLocation: '',
-  //   venueCourts: 0,
-  //   venuePrice: 0,
-  //   venueDescription: ''
-  // })
+  const {venue} = useVenueContext();
 
   // this is extremely dirty plese let me know if there is a better way to do this
   const setVenueAndRender = (item:Venue) => {
-    const {setVenue} = useVenueContext();
-    setVenue({
-      ID: item.ID, 
-      Name: item.Name,
-      Location: item.Location, 
-      Courts: item.Courts,
-      Price: item.Price,
-      Description: item.Description,
-    })
-
+    venue.ID = item.ID
+    venue.Name = item.Name
+    venue.Location = item.Location
+    venue.Courts = item.Courts
+    venue.Price = item.Price
+    venue.Description = item.Description
     return (
       <Card />
     )

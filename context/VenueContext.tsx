@@ -28,7 +28,7 @@ export const VenueContextProvider: React.FC<{children: React.ReactNode}> = ({chi
   
   return (
     <VenueContext.Provider value={{venue, setVenue}}>
-
+        {children}
     </VenueContext.Provider>
   )
 }

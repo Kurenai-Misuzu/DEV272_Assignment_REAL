@@ -34,7 +34,7 @@ export const VenueListContextProvider: React.FC<{children: React.ReactNode}> = (
     
     return (
         <VenueListContext.Provider value={{venueList, addVenue, updateVenue}}>
-
+            {children}
         </VenueListContext.Provider>
     )
 }
