@@ -1,10 +1,10 @@
-import { StyleSheet, ScrollView, FlatList, TextInput, Button, TouchableOpacity } from 'react-native';
+import { StyleSheet, ScrollView, FlatList, TextInput, Button } from 'react-native';
 import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
-import { Stack, useRouter } from 'expo-router';
-import { useState } from 'react';
-import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
+import { Stack } from 'expo-router';
+import { useEffect, useState } from 'react';
+import FloatingButton from '@/components/FloatingButton';
 
 // my components
 import Card from '@/components/Card';
@@ -14,7 +14,7 @@ import { useVenueContext, Venue } from '@/context/VenueContext';
 
 export default function HomeScreen() {
   // gather context
-  const {venueList, addVenue, updateVenue} = useVenueListContext();
+  const {venueList} = useVenueListContext();
 
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredData, setFilteredData] = useState(venueList);
@@ -33,6 +33,18 @@ export default function HomeScreen() {
     setSearchQuery(query);
   }
 
+  // updates venue list on change
+  useEffect(() => {
+    if (searchQuery === ''){
+      setFilteredData(venueList);
+    } else {
+      const filtered = venueList.filter((item) =>
+        item.Name.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+      setFilteredData(filtered);
+    }
+  }, [venueList]);
+
   const {venue} = useVenueContext();
 
   // this is extremely dirty plese let me know if there is a better way to do this
@@ -47,9 +59,6 @@ export default function HomeScreen() {
       <Card />
     )
   }
-
-  // router
-  const router = useRouter();
 
   return (
     <SafeAreaProvider>
@@ -97,9 +106,7 @@ export default function HomeScreen() {
         />
 
         {/* Floating button */}
-        <TouchableOpacity style={styles.floatingButton} onPress={() => router.navigate('/form')}>
-          <MaterialCommunityIcons style={styles.addIcon} name="note-plus-outline" size={24} color="white" />
-        </TouchableOpacity>
+        <FloatingButton />
 
 
       </SafeAreaView>
