@@ -40,7 +40,7 @@ export default function AddVenue() {
                     Price: parseFloat(values.Price),
                     Description: values.Description,
                 });
-                console.log(venueList);
+                
                 resetForm();
                 router.back();
             }}

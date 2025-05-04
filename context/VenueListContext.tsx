@@ -20,7 +20,7 @@ export const VenueListContextProvider: React.FC<{children: React.ReactNode}> = (
     const [venueList, setVenueList] = useState<Venue[]>(data as Venue[]);
 
     const addVenue = (venueToAdd: Venue ) => {
-        console.log(venueToAdd);
+        
         setVenueList((currentList) => [...currentList, venueToAdd]);
     }
 
