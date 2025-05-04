@@ -1,19 +1,19 @@
-import { StyleSheet, ScrollView, FlatList, TextInput, Button } from 'react-native';
+import { StyleSheet, ScrollView, FlatList, TextInput, Button, TouchableOpacity } from 'react-native';
 import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
-import { Stack } from 'expo-router';
+import { Stack, useRouter } from 'expo-router';
 import { useState } from 'react';
-
-import { useVenueListContext } from '@/context/VenueListContext';
-import { useVenueContext, Venue } from '@/context/VenueContext';
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 
 // my components
 import Card from '@/components/Card';
+import { useVenueListContext } from '@/context/VenueListContext';
+import { useVenueContext, Venue } from '@/context/VenueContext';
 
-// data
 
 export default function HomeScreen() {
+  // gather context
   const {venueList, addVenue, updateVenue} = useVenueListContext();
 
   const [searchQuery, setSearchQuery] = useState('');
@@ -48,10 +48,14 @@ export default function HomeScreen() {
     )
   }
 
+  // router
+  const router = useRouter();
+
   return (
     <SafeAreaProvider>
       <SafeAreaView>
         <Stack.Screen options={{ title: 'Home'}} />
+        
         {/* Scrollview */}
 
         <ScrollView style={styles.scrollStyle}>
@@ -85,7 +89,18 @@ export default function HomeScreen() {
           style={styles.flatlistStyle}
           data={filteredData} 
           renderItem={({item}) => setVenueAndRender(item)}
+          ListEmptyComponent={
+            <ThemedView style={styles.titleContainer}>
+              <ThemedText type='subtitle'>No results!</ThemedText>
+            </ThemedView>
+          }
         />
+
+        {/* Floating button */}
+        <TouchableOpacity style={styles.floatingButton} onPress={() => router.navigate('/form')}>
+          <MaterialCommunityIcons style={styles.addIcon} name="note-plus-outline" size={24} color="white" />
+        </TouchableOpacity>
+
 
       </SafeAreaView>
     </SafeAreaProvider>
@@ -120,5 +135,27 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#505050',
     backgroundColor: '#ffffff',
+  },
+  floatingButton: {
+    backgroundColor: '#2196F3',
+    width: 64,
+    height: 64,
+    borderRadius: 60,
+    borderStyle: 'solid',
+    borderColor: '#2196F3',
+    borderWidth: 2,
+    justifyContent: "center",
+    alignItems: "center",
+    position: "absolute",
+    bottom: 40,
+    right: 30,
+    elevation: 5, // For Android shadow
+    shadowColor: "#000", // For iOS shadow
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+  },
+  addIcon: {
+    bottom: 1
   }
 });

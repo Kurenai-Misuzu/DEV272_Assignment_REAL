@@ -13,7 +13,7 @@ export default function Details() {
             <SafeAreaView>
                 <ThemedView style={styles.titleContainer}>
                 <Stack.Screen options={{ title: params.name.toString() }} />
-                    <ThemedText type='title'>Title {params.name}</ThemedText>
+                    <ThemedText type='title'>{params.name}</ThemedText>
                     <ThemedText type='subtitle'>{params.description}</ThemedText>
                     <ThemedView style={styles.listItemStyle}>
                         <ThemedText type='default'>Location: {params.location}</ThemedText>
