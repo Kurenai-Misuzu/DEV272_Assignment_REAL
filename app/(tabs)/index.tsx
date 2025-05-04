@@ -1,5 +1,5 @@
 import { StyleSheet, ScrollView, FlatList, TextInput, Button } from 'react-native';
-import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
+import { SafeAreaView } from 'react-native';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import { Stack } from 'expo-router';
@@ -61,7 +61,6 @@ export default function HomeScreen() {
   }
 
   return (
-    <SafeAreaProvider>
       <SafeAreaView>
         <Stack.Screen options={{ title: 'Home'}} />
         
@@ -110,7 +109,6 @@ export default function HomeScreen() {
 
 
       </SafeAreaView>
-    </SafeAreaProvider>
   );
 }
 
