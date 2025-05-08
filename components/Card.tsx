@@ -11,7 +11,7 @@ import { Button } from "react-native";
 
 
 export default function Card() {
-    const {venue} = useVenueContext(); 
+    const {venue} = useVenueContext();
     return (
         <ThemedView style={styles.listContainer} lightColor='#bdbdbd' darkColor='#5c5c5c'>
             <ThemedText type="subtitle">{venue.Name}</ThemedText>

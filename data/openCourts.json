@@ -21,7 +21,7 @@
         "Location":"Bellevue", 
         "Courts":2, 
         "Price":5,
-        "Description":"An international welcoming place for all to build valuable relationshiops. Lots of programs such as arts, theater, and wellness."
+        "Description":"An international welcoming place for all to build valuable relationships. Lots of programs such as arts, theater, and wellness."
     },
     {
         "ID": 3,
@@ -29,7 +29,7 @@
         "Location":"Bellevue", 
         "Courts":2, 
         "Price":4,
-        "Description":"Offers recreational facilities for younth and their families on the Eastside."
+        "Description":"Offers recreational facilities for youth and their families on the Eastside."
     },
     {
         "ID": 4,

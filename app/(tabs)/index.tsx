@@ -8,13 +8,19 @@ import FloatingButton from '@/components/FloatingButton';
 
 // my components
 import Card from '@/components/Card';
-import { useVenueListContext } from '@/context/VenueListContext';
+import { fetchVenues, useVenueListContext } from '@/context/VenueListContext';
 import { useVenueContext, Venue } from '@/context/VenueContext';
 
 
+
 export default function HomeScreen() {
+  const {venueList, setVenueList} = useVenueListContext();
   // gather context
-  const {venueList} = useVenueListContext();
+  useEffect(() => {
+    fetchVenues().then(setVenueList);
+
+  }, []);
+  
 
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredData, setFilteredData] = useState(venueList);

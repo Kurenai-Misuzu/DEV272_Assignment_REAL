@@ -1,15 +1,26 @@
-import { createContext, useContext, useState } from "react";
-import openCourts from '@/data/openCourts.json';
+import { createContext, useContext, useState, useEffect } from "react";
+
 import { Venue } from "./VenueContext";
+import { supabase } from "@/data/supabase";
 
-const data = openCourts['Open Courts'];
+// fetch data from supabase
+export const fetchVenues = async () => {
+    const { data, error } = await supabase
+        .from('open-courts')
+        .select();
 
+    if (error) throw error;
+    return data;
+
+    
+}
 
 // data types
 type VenueContextListType = {
     venueList: Venue[];
     addVenue: (venueToAdd: Venue) => void;
     updateVenue: (venueID: number, updatedVenue: Partial<Venue>) => void;
+    setVenueList:  (value: React.SetStateAction<Venue[]>) => void;
 }
 
 // create context
@@ -17,7 +28,8 @@ const VenueListContext = createContext<VenueContextListType | null>(null);
 
 // PROVIDER
 export const VenueListContextProvider: React.FC<{children: React.ReactNode}> = ({children}) => {
-    const [venueList, setVenueList] = useState<Venue[]>(data as Venue[]);
+
+    const [venueList, setVenueList] = useState<Venue[]>([]);
 
     const addVenue = (venueToAdd: Venue ) => {
         
@@ -34,7 +46,7 @@ export const VenueListContextProvider: React.FC<{children: React.ReactNode}> = (
     }
     
     return (
-        <VenueListContext.Provider value={{venueList, addVenue, updateVenue}}>
+        <VenueListContext.Provider value={{venueList, setVenueList, addVenue, updateVenue}}>
             {children}
         </VenueListContext.Provider>
     )
