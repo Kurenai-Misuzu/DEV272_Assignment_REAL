@@ -15,12 +15,13 @@ import { queryVenues } from '@/data/queryVenues';
 
 
 export default function HomeScreen() {
-  const {venueList} = useVenueListContext();
 
-  let listStatus = queryVenues();
-
-  const [searchQuery, setSearchQuery] = useState('');
-  const [filteredData, setFilteredData] = useState(venueList);
+  // DECLARATIONS
+  const {venueList} = useVenueListContext();                    // list of venues
+  const {venue} = useVenueContext();                            // the one venue chosen after clicking on it
+  const [searchQuery, setSearchQuery] = useState('');           // handles search query
+  const [filteredData, setFilteredData] = useState(venueList);  // handles filtering the data
+  
 
   // Changes the data when the Search button is pressed
   const handleSearch = () => {
@@ -36,20 +37,6 @@ export default function HomeScreen() {
     setSearchQuery(query);
   }
 
-  // updates venue list on change
-  useEffect(() => {
-    if (searchQuery === ''){
-      setFilteredData(venueList);
-    } else {
-      const filtered = venueList.filter((item) =>
-        item.Name.toLowerCase().includes(searchQuery.toLowerCase())
-      );
-      setFilteredData(filtered);
-    }
-  }, [venueList]);
-
-  const {venue} = useVenueContext();
-
   // this is extremely dirty plese let me know if there is a better way to do this
   const setVenueAndRender = (item:Venue) => {
     venue.ID = item.ID
@@ -62,6 +49,21 @@ export default function HomeScreen() {
       <Card />
     )
   }
+
+  // does a querty for the list of venues from supabase
+  let listStatus = queryVenues();
+
+  // updates venue list on change
+  useEffect(() => {
+    if (searchQuery === ''){
+      setFilteredData(venueList);
+    } else {
+      const filtered = venueList.filter((item) =>
+        item.Name.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+      setFilteredData(filtered);
+    }
+  }, [venueList]);
 
   return (
       <SafeAreaView>
