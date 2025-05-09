@@ -8,19 +8,16 @@ import FloatingButton from '@/components/FloatingButton';
 
 // my components
 import Card from '@/components/Card';
-import { fetchVenues, useVenueListContext } from '@/context/VenueListContext';
+import { useVenueListContext } from '@/context/VenueListContext';
 import { useVenueContext, Venue } from '@/context/VenueContext';
+import { queryVenues } from '@/data/queryVenues';
 
 
 
 export default function HomeScreen() {
-  const {venueList, setVenueList} = useVenueListContext();
-  // gather context
-  useEffect(() => {
-    fetchVenues().then(setVenueList);
+  const {venueList} = useVenueListContext();
 
-  }, []);
-  
+  let listStatus = queryVenues();
 
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredData, setFilteredData] = useState(venueList);
@@ -105,7 +102,7 @@ export default function HomeScreen() {
           renderItem={({item}) => setVenueAndRender(item)}
           ListEmptyComponent={
             <ThemedView style={styles.titleContainer}>
-              <ThemedText type='subtitle'>No results!</ThemedText>
+              <ThemedText type='subtitle'>{listStatus}</ThemedText>
             </ThemedView>
           }
         />

@@ -1,19 +1,8 @@
-import { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext, useState} from "react";
 
 import { Venue } from "./VenueContext";
-import { supabase } from "@/data/supabase";
 
-// fetch data from supabase
-export const fetchVenues = async () => {
-    const { data, error } = await supabase
-        .from('open-courts')
-        .select();
 
-    if (error) throw error;
-    return data;
-
-    
-}
 
 // data types
 type VenueContextListType = {
