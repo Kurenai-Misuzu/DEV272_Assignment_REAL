@@ -1,20 +1,20 @@
 import { createClient } from '@supabase/supabase-js'
 
 // api key in .env
-let supabaseURL: string;
-let supabaseKEY: string;
+export let supabaseURL: string;
+export let supabaseKEY: string;
 
-// typechecking keys
-if (process.env.EXPO_PUBLIC_SUPABASE_URL){
-    supabaseURL = process.env.EXPO_PUBLIC_SUPABASE_URL;
-} else {
-    throw new Error ('No supabase URL');
-}
-if (process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY){
-    supabaseKEY = process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY;
-} else {
-    throw new Error ('No supabase Key')
-}
+export const supabase = () => {
+    if (process.env.EXPO_PUBLIC_SUPABASE_URL){
+        supabaseURL = process.env.EXPO_PUBLIC_SUPABASE_URL;
+    } else {
+        throw new Error ('No supabase URL');
+    }
+    if (process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY){
+        supabaseKEY = process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY;
+    } else {
+        throw new Error ('No supabase Key');
+    }
 
-// create client
-export const supabase = createClient(supabaseURL, supabaseKEY);
+    return createClient(supabaseURL, supabaseKEY);
+}
