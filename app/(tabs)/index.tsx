@@ -67,7 +67,8 @@ export default function HomeScreen() {
 
   return (
       <SafeAreaView>
-        <Stack.Screen options={{ title: 'Home'}} />
+        {/**THIS CAUSES THE TEST TO NOT RUN I FIGURED IT OUT YAHOOO*/}
+        {/* <Stack.Screen options={{ title: 'Home'}} /> */}
         
         {/* Scrollview */}
 

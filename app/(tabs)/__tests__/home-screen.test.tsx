@@ -16,8 +16,8 @@ describe('initial test of rendering homescreen', () => {
                     <VenueContextProvider>
                         <HomeScreen />
                     </VenueContextProvider>
-                </VenueListContextProvider>,
-            </QueryClientProvider>,
+                </VenueListContextProvider>
+            </QueryClientProvider>
         );
     }
 
@@ -26,6 +26,7 @@ describe('initial test of rendering homescreen', () => {
 
 
         customRender();
-
+        
+        expect(screen.getByText('Pickup Court Finder')).toBeTruthy();
     });
 })

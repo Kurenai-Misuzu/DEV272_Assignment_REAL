@@ -14,11 +14,11 @@ describe('check api keys', () => {
     });
 
     test('Check URL', () => {
-        expect(process.env.EXPO_PUBLIC_SUPABASE_URL).not.toBeNull();
+        expect(process.env.EXPO_PUBLIC_SUPABASE_URL).toBeTruthy();
     });
 
     test('Check Key', () => {
-        expect(process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY).not.toBeNull();
+        expect(process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY).toBeTruthy();
     })
 
 })
