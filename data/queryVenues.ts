@@ -4,6 +4,13 @@ import { useVenueListContext } from "@/context/VenueListContext";
 import { use, useEffect } from "react";
 //import AsyncStorage from '@react-native-async-storage/async-storage';
 
+export async function supabaseQuery() {
+    const { data } = await supabase
+    .from('open-courts')
+    .select();
+    return data;
+}
+
 export const queryVenues = () => {
 
     const {setVenueList} = useVenueListContext(); 
@@ -18,12 +25,7 @@ export const queryVenues = () => {
         staleTime: 30000,
         refetchInterval: 30000,
         queryKey: ['VenueList'], 
-        queryFn: async () => {
-            const { data } = await supabase
-            .from('open-courts')
-            .select();
-            return data;
-        },  
+        queryFn: supabaseQuery
     });
 
     // set the venue list with the fetched data

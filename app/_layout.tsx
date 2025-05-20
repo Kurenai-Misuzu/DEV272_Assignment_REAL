@@ -15,6 +15,8 @@ import { VenueContextProvider } from '@/context/VenueContext';
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
+export let queryClient = new QueryClient();
+
 export default function RootLayout() {
   const colorScheme = useColorScheme();
   const [loaded] = useFonts({
@@ -31,7 +33,7 @@ export default function RootLayout() {
     return null;
   }
 
-  const queryClient = new QueryClient();
+  queryClient = new QueryClient();
 
   return (
     <QueryClientProvider client={queryClient}>
