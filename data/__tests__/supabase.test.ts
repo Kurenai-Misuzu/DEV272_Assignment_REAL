@@ -1,6 +1,3 @@
-import { supabaseURL, supabaseKEY } from "../supabase";
-
-
 describe('check api keys', () => {
     const OLD_ENV = process.env;
 

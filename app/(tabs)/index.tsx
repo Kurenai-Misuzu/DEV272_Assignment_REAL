@@ -30,6 +30,7 @@ export default function HomeScreen() {
       item.Name.toLowerCase().includes(searchQuery.toLowerCase())
     );
     setFilteredData(filtered);
+    console.log("Filtered data: ", filtered);
   };
 
   // Changes the searchQuery when the text box is changed
