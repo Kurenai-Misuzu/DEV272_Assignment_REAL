@@ -39,8 +39,6 @@ export default function HomeScreen() {
         item.Name.toLowerCase().includes(searchQuery.toLocaleLowerCase()),
       ),
     );
-    console.log("button pressed: ", searchQuery);
-    console.log("Filtered data: ", filteredJson);
   };
 
   // Changes the searchQuery when the text box is changed
