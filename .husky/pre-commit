@@ -1,0 +1,2 @@
+npx jest --setupFiles dotenv/config --detectOpenHandles
+npx expo lint --fix

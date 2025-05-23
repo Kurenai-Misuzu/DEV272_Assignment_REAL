@@ -5,32 +5,32 @@ import {
   TextInput,
   Button,
   SafeAreaView,
-} from 'react-native';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
-import { useEffect, useState } from 'react';
-import FloatingButton from '@/components/FloatingButton';
+} from "react-native";
+import { ThemedText } from "@/components/ThemedText";
+import { ThemedView } from "@/components/ThemedView";
+import { useEffect, useState } from "react";
+import FloatingButton from "@/components/FloatingButton";
 
 // my components
-import Card from '@/components/Card';
-import { useVenueListContext } from '@/context/VenueListContext';
-import { useVenueContext, Venue } from '@/context/VenueContext';
-import { queryVenues } from '@/data/queryVenues';
+import Card from "@/components/Card";
+import { useVenueListContext } from "@/context/VenueListContext";
+import { useVenueContext, Venue } from "@/context/VenueContext";
+import { queryVenues } from "@/data/queryVenues";
 
 export default function HomeScreen() {
   // DECLARATIONS
   const { venueList } = useVenueListContext(); // list of venues
   const { venue } = useVenueContext(); // the one venue chosen after clicking on it
-  const [searchQuery, setSearchQuery] = useState(''); // handles search query
+  const [searchQuery, setSearchQuery] = useState(""); // handles search query
   const [filteredData, setFilteredData] = useState(venueList); // handles filtering the data
 
   // Changes the data when the Search button is pressed
   const handleSearch = () => {
     const filtered = venueList.filter((item) =>
-      item.Name.toLowerCase().includes(searchQuery.toLowerCase())
+      item.Name.toLowerCase().includes(searchQuery.toLowerCase()),
     );
     setFilteredData(filtered);
-    console.log('Filtered data: ', filtered);
+    console.log("Filtered data: ", filtered);
   };
 
   // Changes the searchQuery when the text box is changed
@@ -54,11 +54,11 @@ export default function HomeScreen() {
 
   // updates venue list on change
   useEffect(() => {
-    if (searchQuery === '') {
+    if (searchQuery === "") {
       setFilteredData(venueList);
     } else {
       const filtered = venueList.filter((item) =>
-        item.Name.toLowerCase().includes(searchQuery.toLowerCase())
+        item.Name.toLowerCase().includes(searchQuery.toLowerCase()),
       );
       setFilteredData(filtered);
     }
@@ -85,7 +85,7 @@ export default function HomeScreen() {
 
         <TextInput
           style={styles.textInputStyle}
-          placeholder={'Search'}
+          placeholder={"Search"}
           value={searchQuery}
           onChangeText={changeSearch}
         />
@@ -115,8 +115,8 @@ export default function HomeScreen() {
 
 const styles = StyleSheet.create({
   titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     gap: 8,
     padding: 10,
     paddingTop: 30,
@@ -129,32 +129,32 @@ const styles = StyleSheet.create({
   scrollStyle: {
     paddingHorizontal: 10,
     paddingVertical: 0,
-    height: '30%',
+    height: "30%",
   },
   flatlistStyle: {
-    height: '70%',
+    height: "70%",
   },
   textInputStyle: {
-    borderStyle: 'solid',
+    borderStyle: "solid",
     borderWidth: 1,
-    borderColor: '#505050',
-    backgroundColor: '#ffffff',
+    borderColor: "#505050",
+    backgroundColor: "#ffffff",
   },
   floatingButton: {
-    backgroundColor: '#2196F3',
+    backgroundColor: "#2196F3",
     width: 64,
     height: 64,
     borderRadius: 60,
-    borderStyle: 'solid',
-    borderColor: '#2196F3',
+    borderStyle: "solid",
+    borderColor: "#2196F3",
     borderWidth: 2,
-    justifyContent: 'center',
-    alignItems: 'center',
-    position: 'absolute',
+    justifyContent: "center",
+    alignItems: "center",
+    position: "absolute",
     bottom: 40,
     right: 30,
     elevation: 5, // For Android shadow
-    shadowColor: '#000', // For iOS shadow
+    shadowColor: "#000", // For iOS shadow
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
