@@ -1,24 +1,20 @@
-describe('check api keys', () => {
-    const OLD_ENV = process.env;
+describe("check api keys", () => {
+  const OLD_ENV = process.env;
 
-    beforeEach(() => {
-        jest.resetModules();
-        process.env = {...OLD_ENV};
-    });
+  beforeEach(() => {
+    jest.resetModules();
+    process.env = { ...OLD_ENV };
+  });
 
-    afterAll(() => {
-        process.env = OLD_ENV;
-    });
+  afterAll(() => {
+    process.env = OLD_ENV;
+  });
 
-    test('Check URL', () => {
-        expect(process.env.EXPO_PUBLIC_SUPABASE_URL).toBeTruthy();
-    });
+  test("Check URL", () => {
+    expect(process.env.EXPO_PUBLIC_SUPABASE_URL).toBeTruthy();
+  });
 
-    test('Check Key', () => {
-        expect(process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY).toBeTruthy();
-    })
-
-})
-
-
-
+  test("Check Key", () => {
+    expect(process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY).toBeTruthy();
+  });
+});

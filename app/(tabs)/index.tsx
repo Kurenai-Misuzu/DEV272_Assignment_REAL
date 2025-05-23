@@ -15,7 +15,10 @@ import FloatingButton from "@/components/FloatingButton";
 import Card from "@/components/Card";
 import { useVenueListContext } from "@/context/VenueListContext";
 import { useVenueContext, Venue } from "@/context/VenueContext";
-import { queryVenues } from "@/data/queryVenues";
+import { QueryVenues } from "@/data/queryVenues";
+import openCourts from "@/data/openCourts.json";
+
+let filteredJson = "";
 
 export default function HomeScreen() {
   // DECLARATIONS
@@ -23,6 +26,7 @@ export default function HomeScreen() {
   const { venue } = useVenueContext(); // the one venue chosen after clicking on it
   const [searchQuery, setSearchQuery] = useState(""); // handles search query
   const [filteredData, setFilteredData] = useState(venueList); // handles filtering the data
+  const jsonData = openCourts["Open Courts"];
 
   // Changes the data when the Search button is pressed
   const handleSearch = () => {
@@ -30,7 +34,13 @@ export default function HomeScreen() {
       item.Name.toLowerCase().includes(searchQuery.toLowerCase()),
     );
     setFilteredData(filtered);
-    console.log("Filtered data: ", filtered);
+    filteredJson = JSON.stringify(
+      jsonData.filter((item) =>
+        item.Name.toLowerCase().includes(searchQuery.toLocaleLowerCase()),
+      ),
+    );
+    console.log("button pressed: ", searchQuery);
+    console.log("Filtered data: ", filteredJson);
   };
 
   // Changes the searchQuery when the text box is changed
@@ -50,7 +60,7 @@ export default function HomeScreen() {
   };
 
   // does a querty for the list of venues from supabase
-  let listStatus = queryVenues();
+  let listStatus = QueryVenues();
 
   // updates venue list on change
   useEffect(() => {
@@ -107,6 +117,10 @@ export default function HomeScreen() {
         }
       />
 
+      <ThemedView style={styles.invisible}>
+        <ThemedText type="subtitle">{filteredJson}</ThemedText>
+      </ThemedView>
+
       {/* Floating button */}
       <FloatingButton />
     </SafeAreaView>
@@ -158,6 +172,9 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
+  },
+  invisible: {
+    visibility: "hidden",
   },
   addIcon: {
     bottom: 1,

@@ -20,16 +20,23 @@ describe("initial test of rendering homescreen", () => {
     );
   };
 
-  test("Checks if text is rendered", () => {
+  test("Checks if search filters properly", () => {
     customRender();
 
     const searchInput = screen.queryByPlaceholderText("Search");
     expect(searchInput).toBeTruthy();
 
-    //fireEvent.changeText(searchInput, 'Bellevue');
+    // check for red
+    fireEvent.changeText(searchInput, "red");
+
+    // press search button
     fireEvent.press(screen.getByText("Search"));
 
-    screen.debug();
-    //expect(screen.getByText('Loading...')).toBeOnTheScreen();
+    // checks if redmond is there
+    expect(
+      screen.getByText(
+        '[{"ID":1,"Name":"Redmond Commuinty & Senior Center","Location":"Redmond","Courts":1,"Price":8,"Description":"A 52K square foot space that was designed for everyone. Contains several courts and is a great place for socialization!"}]',
+      ),
+    ).toBeTruthy();
   });
 });
