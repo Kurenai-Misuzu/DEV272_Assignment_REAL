@@ -1,4 +1,4 @@
-import { ErrorMessage, Formik } from "formik";
+import { Formik } from "formik";
 import { useVenueListContext } from "@/context/VenueListContext";
 import { useRouter } from "expo-router";
 import { ThemedView } from "./ThemedView";
@@ -18,7 +18,7 @@ const venueSchema = Yup.object().shape({
 
 
 export default function AddVenue() {
-    const {addVenue, venueList} = useVenueListContext();
+    const {addVenue} = useVenueListContext();
     const router = useRouter();
 
     return (

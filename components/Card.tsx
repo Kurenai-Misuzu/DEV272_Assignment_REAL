@@ -1,12 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import { ThemedText } from "./ThemedText";
 import { ThemedView } from "./ThemedView";
-import { StyleSheet,} from "react-native";
+import { StyleSheet, Button } from "react-native";
 
 
 import { useVenueContext } from "@/context/VenueContext";
 import { Link } from "expo-router";
-import { Button } from "react-native";
 
 
 

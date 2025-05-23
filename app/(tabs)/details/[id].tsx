@@ -1,5 +1,4 @@
-import { StyleSheet, Button } from 'react-native';
-import { SafeAreaView } from 'react-native';
+import { StyleSheet, Button , SafeAreaView } from 'react-native';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import { useLocalSearchParams, Link, Stack } from 'expo-router';

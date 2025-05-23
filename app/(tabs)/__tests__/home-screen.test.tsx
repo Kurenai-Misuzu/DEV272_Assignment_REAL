@@ -3,7 +3,7 @@ import HomeScreen from "..";
 import { render, screen, fireEvent} from "@testing-library/react-native";
 
 import { VenueListContextProvider } from "@/context/VenueListContext";
-import { useVenueContext, VenueContextProvider } from "@/context/VenueContext";
+import { VenueContextProvider } from "@/context/VenueContext";
 import { QueryClientProvider } from '@tanstack/react-query';
 import { queryClient } from "@/app/_layout";
 

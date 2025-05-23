@@ -1,8 +1,6 @@
-import { StyleSheet, ScrollView, FlatList, TextInput, Button } from 'react-native';
-import { SafeAreaView } from 'react-native';
+import { StyleSheet, ScrollView, FlatList, TextInput, Button , SafeAreaView } from 'react-native';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
-import { Stack } from 'expo-router';
 import { useEffect, useState } from 'react';
 import FloatingButton from '@/components/FloatingButton';
 
@@ -64,7 +62,7 @@ export default function HomeScreen() {
       );
       setFilteredData(filtered);
     }
-  }, [venueList]);
+  }, [venueList, searchQuery]);
 
   return (
       <SafeAreaView>
